@@ -127,8 +127,9 @@ def swap_face(
             face_swapper = getFaceSwapModel(model_path)
 
             for face_num in faces_index:
+                source_face = get_face_single(source_img, face_index=face_num)
                 target_face = get_face_single(target_img, face_index=face_num)
-                if target_face is not None:
+                if target_face is not None and source_face is not None:
                     result = face_swapper.get(result, target_face, source_face)
                 else:
                     logger.info(f"No target face found for {face_num}")
